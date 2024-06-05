@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waveform Visualization</title>
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+</head>
+
+<body>
+    <div id="waveform"></div>
+    <button id="playPause">Play/Pause</button>
+    <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
+    <script>
+        // Initialize Wavesurfer
+        var wavesurfer = WaveSurfer.create({
+            container: '#waveform',
+            waveColor: 'violet',
+            progressColor: 'purple',
+            cursorColor: 'navy',
+            barWidth: 2,
+            height: 100,
+            responsive: true,
+        });
+
+        // Load the audio file
+        wavesurfer.load('wishing.m4a');
+
+        // Play/Pause button
+        var playPauseButton = document.getElementById('playPause');
+        playPauseButton.addEventListener('click', function () {
+            wavesurfer.playPause();
+        });
+
+        // Volume control
+        var volumeSlider = document.getElementById('volume');
+        volumeSlider.addEventListener('input', function () {
+            wavesurfer.setVolume(volumeSlider.value);
+        });
+    </script>
+</body>
+
+</html>
